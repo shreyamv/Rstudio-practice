@@ -1,0 +1,190 @@
+---
+ title: "R Language"
+ output: html_document
+ 
+ ---
+ 
+ 
+ R is a powerful programming language that offers a wide range of tools and libraries for creating stunning data visualizations. It is widely used for 
+ 
+ * data analysis
+ * visualization
+ * statistical modeling.
+ 
+ ## Why use R for Data Visualization ? 
+ 
+ * Can Process Large Amount of Data Easily
+ * Versatile
+ * High Quality Graphics
+ * Customization
+ 
+ ## Examples
+ 
+ ### Installing and Loading Packages
+ 
+ To install the Packages use 'install.packages()'
+ To load the installed use 'library()'
+ 
+ {r}
+ install.packages("palmerpenguins")
+ 
+ 
+ {r}
+ library(palmerpenguins)
+ 
+ 
+ ### Viewing Data
+ 
+ To view what is in the package use 'data()'
+ 
+ {r}
+ data(package = "palmerpenguins")
+ 
+ 
+ 
+ To view the table use 'View()' - Remember - R Language is Case Sensitive!
+ 
+ 
+ View(penguins)
+ 
+ But the View() doesn't work in the .rmd document as it opens a separate data viewer window to display the table.It looks like 
+ 
+ 
+ 
+ 
+ To see the transposed version of the data frame use 'glimpse()' 
+ 
+ {r}
+ install.packages("dplyr")
+ library(dplyr)
+ glimpse(penguins)
+ 
+ 
+ ### Nesting Code
+ 
+ To nest code in R use Pipes - '%>%'
+ To filter data use filter()
+ 
+ {r}
+ filtered_flipper_length_mm <- penguins %>% filter(flipper_length_mm >= 180)
+ filtered_flipper_length_mm
+ 
+ 
+ ### Arranging Data
+ 
+ To arrange data use 'arrange()'
+ 
+ {r}
+ sorted_flipper_length_mm <- penguins %>% filter(flipper_length_mm >= 180) %>% arrange(desc(flipper_length_mm))
+ sorted_flipper_length_mm
+ 
+ 
+ ### Grouping Data
+ 
+ To group the data use 'group_by()'
+ 
+ {r}
+ sorted_flipper_length_mm <- penguins %>% filter(flipper_length_mm >= 180) %>% arrange(desc(flipper_length_mm)) %>% group_by(species)
+ sorted_flipper_length_mm
+ 
+ 
+ ### R for Data Visualization
+ 
+ Use the 'ggplot()' for visualization
+ 
+ {r}
+ install.packages("ggplot2")
+ 
+ 
+ {r}
+ library(ggplot2)
+ 
+ 
+ To create a Scatter Plot - 'geom_point()'
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g))+geom_point()
+ 
+ 
+ 
+ To create a bar graph - 'geom_bar()'
+ 
+ {r}
+ ggplot(data = penguins, mapping = aes(body_mass_g))+geom_bar()
+ 
+ 
+ To create a smooth line or curve - 'geom_smooth()'
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g))+geom_smooth()
+ 
+ 
+ ### Aesthetics in R
+ 
+ To change the color based on any column use 'color='
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,color=species))+geom_point()
+ 
+ 
+ To change the shapes based on any column use 'shape='
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,shape=species))+geom_point()
+ 
+ 
+ To change the size based on any column use 'size='
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,size=species))+geom_point()
+ 
+ 
+ To combine all
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,color=species,shape=species,size=species))+geom_point()
+ 
+ 
+ To manage the transparency use 'aplha='
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,alpha=species))+geom_point()
+ 
+ 
+ We can also add color, shape and size to alpha
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,alpha=species,color=species,shape=species,size=species))+geom_point()
+ 
+ 
+ {r}
+ ggplot(data = penguins,mapping = aes(x = flipper_length_mm ,y=body_mass_g,alpha=species,color=species,shape=species))+geom_point()
+ 
+ 
+ To add colors
+ 
+ {r}
+ ggplot(data = penguins)+ geom_point(mapping = aes(x = flipper_length_mm ,y=body_mass_g),color="purple")
+ 
+ 
+ ### Save Images
+ 
+ To save images use 'ggsave()'
+ 
+ {r}
+ ggplot(data = penguins)+ geom_point(mapping = aes(x = flipper_length_mm ,y=body_mass_g),color="purple")
+ ggsave("Penguins.png")
+ 
+ 
+ ### R Markdown
+ 
+ It is a sharable R Documentation
+ 
+ ### Links in Markdown File
+ 
+ To include clickable link use '<>'
+ 
+ <https://www.google.com/>
+ 
+ To create an inline link use '[]()'
+ 
+ [Google](https://www.google.com)
